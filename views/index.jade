@@ -2,4 +2,8 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p find out what's in your twitter cloud, you twitter obsessed scoundrel
+
+  form(action='/find', method='get')
+  input(type='text', name='phrase', value=DEFAULT_PHRASE)
+  input(type='submit', value='start')
