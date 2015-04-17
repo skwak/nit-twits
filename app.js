@@ -7,10 +7,12 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var Twitter = require('twitter');
 
 var app = express();
 
 require('dotenv').load();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,6 +58,17 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+
+
+// set up twitter
+
+var client = new Twitter({
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN,
+  access_token_secret: process.env.TWITTER_TOKEN_SECRET
 });
 
 
