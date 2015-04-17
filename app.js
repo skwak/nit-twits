@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var http = require("http");
 var Twitter = require('twitter');
 
 var app = express();
@@ -72,12 +73,30 @@ var client = new Twitter({
 });
 
 
-var params = {screen_name: 'kwakstop'};
-client.get('friends/list', params, function(error, tweets, response){
-  if (!error) {
-    console.log(tweets);
-  }
-});
+// var params = {screen_name: 'kwakstop'};
+// client.get('friends/list', params, function(error, tweets, response){
+//   if (!error) {
+//     console.log(tweets);
+//   }
+// });
+
+// var handle = req.query.handle;
+// console.log(handle);
+
+// app.get('/', function (req, res) {
+//   var handle = req.query.handle;
+//   console.log(handle);
+// });
+
+// app.get('/', function(req, res) {
+//   var handle = req.param('handle');
+//   console.log(handle);
+// });
+
+// app.get('/', function(req, res) {
+    // var handle = req.query.handle;
+    // res.send(handle);
+// });
 
 // app.get('/', function (req, res){
 //   var handle = req.body.handle;
