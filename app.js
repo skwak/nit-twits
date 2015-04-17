@@ -72,4 +72,30 @@ var client = new Twitter({
 });
 
 
+var params = {screen_name: 'kwakstop'};
+client.get('friends/list', params, function(error, tweets, response){
+  if (!error) {
+    console.log(tweets);
+  }
+});
+
+// app.get('/', function (req, res){
+//   var handle = req.body.handle;
+//   alert('handle: ' + req.query.handle);
+//   client.get('friends/list', params, function(error, list, response) {
+//     if (!error) {
+//
+//     }
+//   });
+// });
+
+// var params = {screen_name: 'nodejs'};
+// client.get('friends/list', params, function(error, list, response){
+//   if (!error) {
+//     console.log(list);
+//   }
+// });
+
+
+
 module.exports = app;
