@@ -7,13 +7,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var http = require("http");
-var Twitter = require('twitter');
+var http = require('http');
 
 var app = express();
-
-require('dotenv').load();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -62,59 +58,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-
-// set up twitter
-
-var client = new Twitter({
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_SECRET,
-  access_token_key: process.env.TWITTER_ACCESS_TOKEN,
-  access_token_secret: process.env.TWITTER_TOKEN_SECRET
-});
-
-
-// var params = {screen_name: 'kwakstop'};
-// client.get('friends/list', params, function(error, tweets, response){
-//   if (!error) {
-//     console.log(tweets);
-//   }
-// });
-
-// var handle = req.query.handle;
-// console.log(handle);
-
-// app.get('/', function (req, res) {
-//   var handle = req.query.handle;
-//   console.log(handle);
-// });
-
-// app.get('/', function(req, res) {
-//   var handle = req.param('handle');
-//   console.log(handle);
-// });
-
-// app.get('/', function(req, res) {
-    // var handle = req.query.handle;
-    // res.send(handle);
-// });
-
-// app.get('/', function (req, res){
-//   var handle = req.body.handle;
-//   alert('handle: ' + req.query.handle);
-//   client.get('friends/list', params, function(error, list, response) {
-//     if (!error) {
-//
-//     }
-//   });
-// });
-
-// var params = {screen_name: 'nodejs'};
-// client.get('friends/list', params, function(error, list, response){
-//   if (!error) {
-//     console.log(list);
-//   }
-// });
-
-
+var tweeter = require('./tweet_tweet.js');
+// tweeter.client();
 
 module.exports = app;
