@@ -1,11 +1,11 @@
 $(function() {
-  $("#handleButton").click(function() {
-    submit(event);
-  });
-});
 
-function submit(event) {
-  event.preventDefault();
-  var $handle = $('#handle').val();
-  console.log($handle);
-}
+
+    $('#twitter-handle').click(function() {
+      var handle = $('#handle').val();
+      $.post('/twitter-handle'), { handle: handle }, function(data) {
+        if (data === 'done') {
+          alert("success!");
+        }
+    })
+});

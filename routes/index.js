@@ -4,8 +4,11 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'twitter clouds' });
-  handle = req.query.handle;
-
 });
+
+router.post('/', function(req, res, next) {
+  res.render('index', { title: 'twitter clouds' });
+});
+
 
 module.exports = router;
