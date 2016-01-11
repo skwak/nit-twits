@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var twitterHandle = require('./routes/twitterHandle');
+// var twitter = require('./routes/twitter');
 var http = require('http');
 
 var app = express();
@@ -59,6 +59,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-var tweetTweet = require('./tweet-tweet.js');
+// var tweetTweet = require('./tweet-tweet.js')();
 
 module.exports = app;
