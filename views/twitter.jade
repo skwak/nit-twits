@@ -1,8 +1,13 @@
 extends layout
 
 block content
+
   h1= title
-  p You made it!
-  div(id='all-tweets')
+  div(id='all-tweets') 
     each val in tweets
-      p= val.text
+      p(class='text')= val.text
+  
+  script(type='text/javascript').
+    var tweets = $('#all-tweets').html();
+    console.log(tweets);
+  
