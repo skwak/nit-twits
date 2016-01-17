@@ -8,6 +8,8 @@ block content
       p(class='text')= val.text
   
   script(type='text/javascript').
-    var tweets = $('#all-tweets').html();
-    console.log(tweets);
+    var tweets = $('#all-tweets').text();
+    var twits = tweets.split(' ');
+    console.log(twits);
+    //- console.log(tweets);
   
