@@ -10,6 +10,12 @@ block content
   script(type='text/javascript').
     var tweets = $('#all-tweets').text();
     var twits = tweets.split(' ');
-    console.log(twits);
-    //- console.log(tweets);
-  
+    var twitHash = {};
+    for (var i in twits) {
+      if (twitHash[twits[i]]) {
+        twitHash[twits[i]] += 1;
+      } else {
+        twitHash[twits[i]] = 1;
+      }
+    }
+    console.log(twitHash);
