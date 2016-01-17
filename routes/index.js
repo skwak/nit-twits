@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var tweetTweet = require('../tweet-tweet.js')();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,7 +25,7 @@ router.get('/twitter', function(req, res, next) {
     access_token_secret: process.env.TWITTER_TOKEN_SECRET
   });
 
-  var params = { screen_name: req.query.handle };
+  var params = { screen_name: req.query.handle, count: 50, include_rts: false };
   client.get('statuses/user_timeline', params, function(error, tweets, response){
     if (!error) {
       // console.log(tweets);

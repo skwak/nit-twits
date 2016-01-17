@@ -58,7 +58,4 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
-// var tweetTweet = require('./tweet-tweet.js')();
-
 module.exports = app;
