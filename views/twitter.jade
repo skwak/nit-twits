@@ -5,42 +5,6 @@ block content
   h1= title
   div(id='all-tweets') 
     each val in tweets
-      p(class='text')= val.text + " "
+      p(class='text')= val.text 
   
   script(type='text/javascript').
-    var tweets = $('#all-tweets').text();
-    var twits = tweets.split(/\s/);
-    //- |\.|\*|\(|\)|!|,|:|"|'/
-    var twitHash = {};
-    for (var i in twits) {
-      twits[i] = twits[i].replace(/\(/, "");
-      twits[i] = twits[i].replace(/\)/, "");
-      twits[i] = twits[i].replace(/\*/, "");
-      twits[i] = twits[i].replace(/!/, "");
-      twits[i] = twits[i].replace(/\?/, "");
-      twits[i] = twits[i].replace(/"/, "");
-      twits[i] = twits[i].replace(/'/, "");
-      twits[i] = twits[i].replace(/,/, "");
-      twits[i] = twits[i].replace(/;/, "");
-      twits[i] = twits[i].replace(/\./, "");
-      twits[i] = twits[i].replace(/\+/, "");
-      
-      if (twitHash[twits[i]]) {
-        twitHash[twits[i]] += 1;
-      } else {
-        twitHash[twits[i]] = 1;
-      }
-    }
-    
-    var allKeys = Object.keys(twitHash);
-    var finalKeys = [];
-    
-    for (var i in allKeys) {
-      if (!/\d/.test(allKeys[i]) && !/@/.test(allKeys[i])) {
-        finalKeys.push(allKeys[i]);
-      }
-    }
-    
-    console.log(twitHash);
-    console.log('all keys: ' + allKeys);
-    console.log('final keys: ' + finalKeys);

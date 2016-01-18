@@ -28,8 +28,58 @@ router.get('/twitter', function(req, res, next) {
   var params = { screen_name: req.query.handle, count: 50, include_rts: false };
   client.get('statuses/user_timeline', params, function(error, tweets, response){
     if (!error) {
-      // console.log(tweets);
-      res.render('twitter', { title: 'twitter clouds', tweets: tweets });
+      var tweetArr = [];
+
+      for (var i in tweets) {
+        var splitArr = tweets[i].text.split(/\s|\n/);
+
+        for (var i in splitArr) {
+          splitArr[i] = splitArr[i].replace(/\(/g, "");
+          splitArr[i] = splitArr[i].replace(/\)/g, "");
+          splitArr[i] = splitArr[i].replace(/\*/g, "");
+          splitArr[i] = splitArr[i].replace(/!/g, "");
+          splitArr[i] = splitArr[i].replace(/\?/g, "");
+          splitArr[i] = splitArr[i].replace(/"/g, "");
+          splitArr[i] = splitArr[i].replace(/\[/g, "");
+          splitArr[i] = splitArr[i].replace(/\]/g, "");
+          splitArr[i] = splitArr[i].replace(/,/g, "");
+          splitArr[i] = splitArr[i].replace(/;/g, "");
+          splitArr[i] = splitArr[i].replace(/\./g, "");
+          splitArr[i] = splitArr[i].replace(/\+/g, "");
+
+          if (!/\d/.test(splitArr[i]) && !/@/.test(splitArr[i]) && !/http/.test(splitArr[i])) {
+            tweetArr.push(splitArr[i]);
+          }
+        }
+      }
+
+      var common = require('common-words');
+
+      function removeCommonWords(words, common) {
+        common.forEach(function(obj) {
+          var word = obj.word;
+          while (words.indexOf(word) !== -1) {
+            words.splice(words.indexOf(word), 1);
+          }
+        });
+        return words;
+      };
+
+      var strippedWords = removeCommonWords(tweetArr, common);
+
+      var twitHash = {};
+
+      for (var i in strippedWords) {
+        if (twitHash[strippedWords[i]]) {
+          twitHash[strippedWords[i]] += 1;
+        } else {
+          twitHash[strippedWords[i]] = 1;
+        }
+      }
+
+      console.log(twitHash);
+
+      res.render('twitter', { title: 'twitter clouds', tweets: tweets, tweetArr: tweetArr });
     }
   });
 

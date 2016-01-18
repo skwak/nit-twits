@@ -18,5 +18,8 @@
     "sequelize": "^2.0.6",
     "serve-favicon": "~2.2.0",
     "strip-common-words": "^0.1.1"
+  },
+  "devDependencies": {
+    "common-words": "^0.1.3"
   }
 }
