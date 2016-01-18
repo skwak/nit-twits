@@ -9,7 +9,7 @@ block content
   
   script(type='text/javascript').
     var tweets = $('#all-tweets').text();
-    var twits = tweets.split(' ');
+    var twits = tweets.split(/\s|\.|\*/);
     var twitHash = {};
     for (var i in twits) {
       if (twitHash[twits[i]]) {
@@ -18,4 +18,16 @@ block content
         twitHash[twits[i]] = 1;
       }
     }
+    
+    var allKeys = Object.keys(twitHash);
+    var finalKeys = [];
+    
+    for (var i in allKeys) {
+      if (!/\d/.test(allKeys[i]) && !/@/.test(allKeys[i])) {
+        finalKeys.push(allKeys[i]);
+      }
+    }
+    
     console.log(twitHash);
+    console.log('all keys: ' + allKeys);
+    console.log('final keys: ' + finalKeys);
