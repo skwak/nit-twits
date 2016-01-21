@@ -3,6 +3,7 @@ extends layout
 block content
 
   h1= title
+  div(id='top-tweets') #{topTen}
   div(id='all-tweets') 
     each val in tweets
       p(class='text')= val.text 

@@ -85,17 +85,19 @@ router.get('/twitter', function(req, res, next) {
       // top ten tweeted words
       var topTenTweetWords = (function() {
         var index = 0;
-        var topTen = {};
+        var topTen = [];
         while (index < 10) {
           var tweetKey = sortedKeys[index];
-          topTen[tweetKey] = twitHash[tweetKey]
+          topTen.push(tweetKey);
+          topTen.push(twitHash[tweetKey]);
           index++;
         }
         return topTen;
       })();
+
       console.log(topTenTweetWords);
 
-      res.render('twitter', { title: 'twitter clouds', tweets: tweets, tweetHash: twitHash });
+      res.render('twitter', { title: 'twitter clouds', tweets: tweets, topTen: topTenTweetWords });
     }
   });
 
