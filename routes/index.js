@@ -3,11 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'twitter clouds' });
+  res.render('index', { title: 'nit-twits' });
 });
 
 router.post('/', function(req, res, next) {
-  res.render('index', { title: 'twitter clouds' });
+  res.render('index', { title: 'nit-twits' });
 });
 
 router.get('/twitter', function(req, res, next) {
@@ -25,7 +25,7 @@ router.get('/twitter', function(req, res, next) {
     access_token_secret: process.env.TWITTER_TOKEN_SECRET
   });
 
-  var params = { screen_name: req.query.handle, count: 50, include_rts: false };
+  var params = { screen_name: req.query.handle, count: 100, include_rts: false };
   client.get('statuses/user_timeline', params, function(error, tweets, response){
     if (!error) {
       var tweetArr = [];
@@ -73,8 +73,8 @@ router.get('/twitter', function(req, res, next) {
 
       for (var i in strippedWords) {
         if (strippedWords[i] !== "" && strippedWords[i] !== "i'm" && strippedWords[i] !== "&amp" && strippedWords[i] !== "is" && strippedWords[i] !== "can't" && strippedWords[i] !== "don't" && strippedWords[i] !== "it's" && strippedWords[i] !== "are" &&
-        strippedWords[i] !== "got" && strippedWords[i] !== "i" && strippedWords[i] !== "me" && strippedWords[i] !== "why") {
-          strippedWords[i] = strippedWords[i].replace(/'/g, "");
+        strippedWords[i] !== "got" && strippedWords[i] !== "i" && strippedWords[i] !== "me" && strippedWords[i] !== "why" && strippedWords[i] !== "we're" && strippedWords[i] !== "we'd" && strippedWords[i] !== "we'll") {
+          // strippedWords[i] = strippedWords[i].replace(/'/g, "");
           twitHash[strippedWords[i]] ? twitHash[strippedWords[i]] += 1 : twitHash[strippedWords[i]] = 1;
         }
       }
@@ -93,7 +93,7 @@ router.get('/twitter', function(req, res, next) {
         index++;
       }
 
-      res.render('twitter', { title: 'twitter clouds', tweets: tweets, topTenWords: topTenWords, topTenNums: topTenNums });
+      res.render('twitter', { title: 'nit-twits', tweets: tweets, topTenWords: topTenWords, topTenNums: topTenNums });
     }
   });
 

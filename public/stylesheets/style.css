@@ -1,6 +1,6 @@
 body {
   padding: 1em;
-  font-family: "Consolas", monospace;
+  font-family: "Helvetica Neue", monospace;
 }
 
 a {
@@ -8,11 +8,23 @@ a {
   text-decoration: none;
 }
 
+#top-tweets {
+  color: #fff;
+}
+
+#top-nums {
+  color: #fff;
+}
+
 #tweet-graph div {
-  font: 14px "Consolas";
+  font: 14px "Helvetica Neue";
   background-color: rgb(110, 219, 244);
   text-align: right;
   padding: 4px;
   margin: 2px;
-  color: rgb(238, 255, 252);
+  color: #000;
+}
+
+.text {
+  background-color: rgb(213, 242, 232);
 }

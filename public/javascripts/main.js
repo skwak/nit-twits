@@ -10,7 +10,7 @@ d3.select("#tweet-graph")
   .selectAll("div")
     .data(data)
   .enter().append("div")
-    .style("width", function(d) { return d.value * 80 + "px"; })
+    .style("width", function(d) { return d.value * 60 + "px"; })
     .text(function(d) { return d.name + ": " + d.value; });
 
 function type(d) {

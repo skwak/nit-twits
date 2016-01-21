@@ -1,13 +1,16 @@
 extends layout
 
 block content
-
   h1= title
   div(id='top-tweets') #{topTenWords}
   div(id='top-nums') #{topTenNums}
   
+  h2 top 10 words from last 100 tweets (excl. common words)
+    
   div(id='tweet-graph') 
-
+  
+  h2 last 100 tweets
+  
   div(id='all-tweets') 
     each val in tweets
       p(class='text')= val.text 
