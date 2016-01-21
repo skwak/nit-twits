@@ -5,8 +5,9 @@ block content
   h1= title
   div(id='top-tweets') #{topTenWords}
   div(id='top-nums') #{topTenNums}
+  
   div(id='tweet-graph') 
-  //-   p okie dokie
-  //- div(id='all-tweets') 
-  //-   each val in tweets
-  //-     p(class='text')= val.text 
+
+  div(id='all-tweets') 
+    each val in tweets
+      p(class='text')= val.text 

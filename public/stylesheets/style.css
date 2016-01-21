@@ -9,7 +9,7 @@ a {
 }
 
 #tweet-graph div {
-  font: 10px sans-serif;
+  font: 14px "Consolas";
   background-color: rgb(110, 219, 244);
   text-align: right;
   padding: 4px;
