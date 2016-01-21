@@ -75,11 +75,7 @@ router.get('/twitter', function(req, res, next) {
         if (strippedWords[i] !== "" && strippedWords[i] !== "i'm" && strippedWords[i] !== "&amp" && strippedWords[i] !== "is" && strippedWords[i] !== "can't" && strippedWords[i] !== "don't" && strippedWords[i] !== "it's" && strippedWords[i] !== "are" &&
         strippedWords[i] !== "got" && strippedWords[i] !== "i" && strippedWords[i] !== "me" && strippedWords[i] !== "why") {
           strippedWords[i] = strippedWords[i].replace(/'/g, "");
-          if (twitHash[strippedWords[i]]) {
-            twitHash[strippedWords[i]] += 1;
-          } else {
-            twitHash[strippedWords[i]] = 1;
-          }
+          twitHash[strippedWords[i]] ? twitHash[strippedWords[i]] += 1 : twitHash[strippedWords[i]] = 1;
         }
       }
 
