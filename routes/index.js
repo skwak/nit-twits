@@ -34,6 +34,7 @@ router.get('/twitter', function(req, res, next) {
         var splitArr = tweets[i].text.split(/\s|\n/);
 
         for (var i in splitArr) {
+          splitArr[i].toLowerCase();
           splitArr[i] = splitArr[i].replace(/\(/g, "");
           splitArr[i] = splitArr[i].replace(/\)/g, "");
           splitArr[i] = splitArr[i].replace(/\*/g, "");
@@ -42,13 +43,14 @@ router.get('/twitter', function(req, res, next) {
           splitArr[i] = splitArr[i].replace(/"/g, "");
           splitArr[i] = splitArr[i].replace(/\[/g, "");
           splitArr[i] = splitArr[i].replace(/\]/g, "");
+          splitArr[i] = splitArr[i].replace(/:/g, "");
           splitArr[i] = splitArr[i].replace(/,/g, "");
           splitArr[i] = splitArr[i].replace(/;/g, "");
           splitArr[i] = splitArr[i].replace(/\./g, "");
           splitArr[i] = splitArr[i].replace(/\+/g, "");
 
           if (!/\d/.test(splitArr[i]) && !/@/.test(splitArr[i]) && !/http/.test(splitArr[i])) {
-            tweetArr.push(splitArr[i]);
+            tweetArr.push(splitArr[i].toLowerCase());
           }
         }
       }
@@ -70,16 +72,22 @@ router.get('/twitter', function(req, res, next) {
       var twitHash = {};
 
       for (var i in strippedWords) {
-        if (twitHash[strippedWords[i]]) {
-          twitHash[strippedWords[i]] += 1;
-        } else {
-          twitHash[strippedWords[i]] = 1;
+        if (strippedWords[i] !== "" && strippedWords[i] !== "i'm" && strippedWords[i] !== "&amp" && strippedWords[i] !== "is" && strippedWords[i] !== "can't" && strippedWords[i] !== "don't" && strippedWords[i] !== "it's" && strippedWords[i] !== "are" &&
+        strippedWords[i] !== "got" && strippedWords[i] !== "i" && strippedWords[i] !== "me" && strippedWords[i] !== "why") {
+          strippedWords[i] = strippedWords[i].replace(/'/g, "");
+          if (twitHash[strippedWords[i]]) {
+            twitHash[strippedWords[i]] += 1;
+          } else {
+            twitHash[strippedWords[i]] = 1;
+          }
         }
       }
 
-      console.log(twitHash);
+      var sortedKeys = Object.keys(twitHash).sort(function(a, b) { return twitHash[a] - twitHash[b]});
+      console.log(sortedKeys.reverse());
 
-      res.render('twitter', { title: 'twitter clouds', tweets: tweets, tweetArr: tweetArr });
+      console.log(twitHash);
+      res.render('twitter', { title: 'twitter clouds', tweets: tweets, tweetHash: twitHash });
     }
   });
 
