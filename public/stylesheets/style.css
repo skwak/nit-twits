@@ -7,3 +7,12 @@ a {
   color: #00B7FF;
   text-decoration: none;
 }
+
+#tweet-graph div {
+  font: 10px sans-serif;
+  background-color: rgb(110, 219, 244);
+  text-align: right;
+  padding: 4px;
+  margin: 2px;
+  color: rgb(238, 255, 252);
+}

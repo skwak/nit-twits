@@ -83,21 +83,17 @@ router.get('/twitter', function(req, res, next) {
       sortedKeys.reverse();
 
       // top ten tweeted words
-      var topTenTweetWords = (function() {
-        var index = 0;
-        var topTen = [];
-        while (index < 10) {
-          var tweetKey = sortedKeys[index];
-          topTen.push(tweetKey);
-          topTen.push(twitHash[tweetKey]);
-          index++;
-        }
-        return topTen;
-      })();
+      var index = 0;
+      var topTenWords = [];
+      var topTenNums = []
+      while (index < 10) {
+        var tweetKey = sortedKeys[index];
+        topTenWords.push(tweetKey);
+        topTenNums.push(twitHash[tweetKey]);
+        index++;
+      }
 
-      console.log(topTenTweetWords);
-
-      res.render('twitter', { title: 'twitter clouds', tweets: tweets, topTen: topTenTweetWords });
+      res.render('twitter', { title: 'twitter clouds', tweets: tweets, topTenWords: topTenWords, topTenNums: topTenNums });
     }
   });
 
