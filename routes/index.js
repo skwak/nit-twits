@@ -36,6 +36,7 @@ router.get('/twitter', function(req, res, next) {
         for (var i in splitArr) {
           splitArr[i].toLowerCase();
           splitArr[i] = splitArr[i].replace(/\(/g, "");
+          splitArr[i] = splitArr[i].replace(/-/g, "");
           splitArr[i] = splitArr[i].replace(/\)/g, "");
           splitArr[i] = splitArr[i].replace(/\*/g, "");
           splitArr[i] = splitArr[i].replace(/!/g, "");
@@ -73,7 +74,7 @@ router.get('/twitter', function(req, res, next) {
 
       for (var i in strippedWords) {
         if (strippedWords[i] !== "" && strippedWords[i] !== "i'm" && strippedWords[i] !== "&amp" && strippedWords[i] !== "is" && strippedWords[i] !== "can't" && strippedWords[i] !== "don't" && strippedWords[i] !== "it's" && strippedWords[i] !== "are" &&
-        strippedWords[i] !== "got" && strippedWords[i] !== "i" && strippedWords[i] !== "me" && strippedWords[i] !== "why" && strippedWords[i] !== "we're" && strippedWords[i] !== "we'd" && strippedWords[i] !== "we'll") {
+        strippedWords[i] !== "got" && strippedWords[i] !== "i" && strippedWords[i] !== "me" && strippedWords[i] !== "why" && strippedWords[i] !== "we're" && strippedWords[i] !== "we'd" && strippedWords[i] !== "we'll" && strippedWords[i] !== "had") {
           // strippedWords[i] = strippedWords[i].replace(/'/g, "");
           twitHash[strippedWords[i]] ? twitHash[strippedWords[i]] += 1 : twitHash[strippedWords[i]] = 1;
         }
