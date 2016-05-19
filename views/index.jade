@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  p find out what's in your twitter cloud, you twitter obsessed scoundrel
-
+  div(id='title')
+  div(id='opening-words')
+  
   form(id='twitter-handle' action='/twitter')
     input(type='text', id='handle', name='handle', placeholder='@yourtwitterhandle')
     input(type='submit', id='handleButton', value='go!')
